@@ -1,0 +1,55 @@
+button {
+    font-size:16px;
+    width:100px;
+    margin:10px;
+    color: white;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-weight: bolder;
+}
+.container{
+    display: grid;
+    grid-template-rows: 1fr .3fr 1fr;
+    margin-bottom: 1rem;
+}
+
+.count {
+    font-size: 50px;
+    padding: 20px;
+
+}
+
+.totalCount {
+    color: #00a5ab;
+    font-size: 150px;
+}
+.totalCountActive{
+    color: #00a5ab;
+    font-size: 100px;
+}
+
+.counter{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.counterButton:nth-child(1){
+    background-color: #3468C0;
+}
+.counterButton:nth-child(2){
+    background-color: #FF9843;
+}
+.counterButton:nth-child(3){
+    background-color: #454545;
+}
+.counterButton:nth-child(4){
+    background-color: #fdcf6c;
+}
+.counterButton:nth-child(5){
+    background-color: #ff5643;
+}
+
+
+
+
