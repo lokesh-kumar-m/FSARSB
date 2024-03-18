@@ -1,11 +1,11 @@
 import React from 'react';
-import Counter from './components/counter/Counter.jsx'
+import Todo from './components/Todo/Todo';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Counter></Counter>
+      <Todo></Todo>
     </div>
   );
 }
