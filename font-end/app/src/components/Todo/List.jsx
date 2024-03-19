@@ -1,10 +1,23 @@
+import axios from "axios"
+import { useState } from "react"
+import { UserData } from "./api/userapi"
+
 const ListComp=()=>{
 
-    const lst=[{id:1, dec:'drink water'},
-    {id:2, dec:'water'},
-    {id:3, dec:'eat'},    
-    {id:4, dec:'meds'}
-                ]
+    const [lst,setlst]=useState([{}])
+    axios.get("http://localhost:8082/users/jpa").then(
+        (response)=>setList(response)
+    )
+    .catch(
+        (error)=>errorMess(error)
+    )
+
+    function setList(response){
+        setlst(response.data)        
+    }
+    function errorMess(error){
+        console.log(error)
+    }
 
     return(
         <div>
@@ -21,14 +34,10 @@ const ListComp=()=>{
                          {lst.map((element,i)=>(
                             <tr key={i}>
                                 <td>{element.id}</td>
-                                <td>{element.dec}</td>
+                                <td>{element.PersonName}</td>
                             </tr>
                         ))}     
-
-                            <tr>    
-                                <td>{lst.id}</td>
-                                <td>{lst.dec}</td>
-                            </tr>
+                            
                     </tbody>                    
                 </table>
             </div>
