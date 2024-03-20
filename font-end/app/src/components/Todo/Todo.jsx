@@ -10,6 +10,8 @@ import Footer from "./Footer";
 import Error from "./Error";
 import Auth from "./auth";
 import { useAuth } from "./auth";
+import Update from "./Update";
+
 
 function AuthenticatedRoutes({children}){
     const authContext=useAuth()
@@ -46,6 +48,12 @@ const Todo=()=>{
                             <Logout></Logout>
                         </AuthenticatedRoutes>   
                     }/>
+                    <Route path='/update/:id' element={
+                        <AuthenticatedRoutes>
+                            <Update> </Update>
+                        </AuthenticatedRoutes>
+                    }/>
+                    
 
                     <Route path='*' element={<Error></Error>}/>
                 </Routes>

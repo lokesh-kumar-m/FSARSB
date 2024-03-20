@@ -8,10 +8,12 @@ export const useAuth=()=>useContext(AuthContext)
 
 const Auth=({children})=>{
     const [isAuthentic,setAuthentic]=useState(false)
+    const [username,setUsername]=useState("")
     
     function islogin(name,password){
         if(name==="admin"&&password==="dummy"){
             setAuthentic(true)
+            setUsername(name)
             return true 
         }
         else{
@@ -25,7 +27,7 @@ const Auth=({children})=>{
     }
 
     return(
-        <AuthContext.Provider value={ {isAuthentic,islogin,islogout} }>
+        <AuthContext.Provider value={ {isAuthentic,islogin,islogout,username} }>
             {children}
         </AuthContext.Provider>
     );
