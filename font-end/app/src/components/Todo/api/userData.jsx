@@ -8,3 +8,9 @@ const apicalls=axios.create({
 export const UserData=()=>apicalls.get("/hello-world")
 
 export const UserHello=(name)=>apicalls.get(`/hello-world/path-variable/${name}`)
+
+export const BasicAuthentication=(token)=>apicalls.get(`/basicauth`,{
+    headers:{
+        Authorization:token
+    }
+})
