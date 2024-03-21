@@ -9,7 +9,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@Configuration
+//@Configuration
 public class BasicSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -23,7 +23,7 @@ public class BasicSecurityConfiguration {
         // http.csrf().disable();
         
         http.authorizeHttpRequests(
-            auth->auth.anyRequest().authenticated()
+            auth->auth.antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated()
         );
         http.httpBasic(withDefaults());
         http.sessionManagement(

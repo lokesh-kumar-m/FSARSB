@@ -1,17 +1,6 @@
-import axios from "axios";
+import { apiContext } from "./apiCofig"
 
-export const apiContext=axios.create(
-    {
-        baseURL:'http://localhost:8082'
-    }
-)
-
-export const UserList=(name)=>apiContext.get(`users/${name}/list`,{
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        Authorization:'Basic QWRtaW46ZHVtbXk='
-    }
-})
+export const UserList=(name)=>apiContext.get(`users/${name}/list`)
 
 export const DeleteUser=(name,id)=>apiContext.delete(`users/${name}/list/${id}`)
 

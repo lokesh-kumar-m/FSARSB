@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import {BasicAuthentication} from './api/userData'
-
+import { apiContext } from "./api/apiCofig";
 
 export const AuthContext=createContext() 
 export const useAuth=()=>useContext(AuthContext)
@@ -10,32 +10,28 @@ export const useAuth=()=>useContext(AuthContext)
 const Auth=({children})=>{
     const [isAuthentic,setAuthentic]=useState(false)
     const [username,setUsername]=useState("")
+    const [authToken,setToken]=useState('')
     
-    // function islogin(name,password){
-    //     if(name==="admin"&&password==="dummy"){
-    //         setAuthentic(true)
-    //         setUsername(name)
-    //         return true 
-    //     }
-    //     else{
-    //         setAuthentic(false) 
-    //         return false
-    //     }
-    // }
-
     async function islogin(name,password){
 
         const baToken= "Basic "+ window.btoa(name +":"+ password)
-        console.log("tkn:"+baToken)
+        setToken(baToken)
         try{
             const response= await BasicAuthentication(baToken)
         
             if(response.status==200){
                 setAuthentic(true)
                 setUsername(name)
+                apiContext.interceptors.request.use(
+                    (config)=>{
+                        config.headers.Authorization=baToken
+                        return config
+                    }
+                )
                 return true 
             }
             else{
+                setToken('')
                 setAuthentic(false) 
                 return false
             }
@@ -45,11 +41,12 @@ const Auth=({children})=>{
     }
 
     function islogout(){
+        setToken('')
         setAuthentic(false) 
     }
 
     return(
-        <AuthContext.Provider value={ {isAuthentic,islogin,islogout,username} }>
+        <AuthContext.Provider value={ {isAuthentic,islogin,islogout,username,authToken} }>
             {children}
         </AuthContext.Provider>
     );
