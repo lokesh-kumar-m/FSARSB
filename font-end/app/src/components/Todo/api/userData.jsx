@@ -7,10 +7,17 @@ const apicalls=axios.create({
 
 export const UserData=()=>apicalls.get("/hello-world")
 
-export const UserHello=(name)=>apicalls.get(`/hello-world/path-variable/${name}`)
+export const UserHello=(name)=>apicalls.get(`/hello-world/path-variable/${name}`,{
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Authorization":'Basic QWRtaW46ZHVtbXk='
+    }
+})
 
 export const BasicAuthentication=(token)=>apicalls.get(`/basicauth`,{
     headers:{
-        Authorization:token
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization':token
     }
 })

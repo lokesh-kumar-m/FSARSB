@@ -10,8 +10,8 @@ const Login=()=>{
     const navigateTo=useNavigate();
     const authContext=useAuth()
 
-    function handleClick(){
-        if(authContext.islogin(name,password)){
+    async function handleClick(){
+        if(await authContext.islogin(name,password)){
            setMessage("Login SucessFul")
            navigateTo(`/welcome/${name}`)
         }

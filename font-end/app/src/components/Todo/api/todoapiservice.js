@@ -6,7 +6,12 @@ export const apiContext=axios.create(
     }
 )
 
-export const UserList=(name)=>apiContext.get(`users/${name}/list`)
+export const UserList=(name)=>apiContext.get(`users/${name}/list`,{
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization:'Basic QWRtaW46ZHVtbXk='
+    }
+})
 
 export const DeleteUser=(name,id)=>apiContext.delete(`users/${name}/list/${id}`)
 

@@ -23,21 +23,25 @@ const Auth=({children})=>{
     //     }
     // }
 
-    function islogin(name,password){
+    async function islogin(name,password){
 
         const baToken= "Basic "+ window.btoa(name +":"+ password)
-        BasicAuthentication(baToken).then((response)=>console.log("response")).catch((error)=>console.log(error))
-
-        setAuthentic(false)
-        // if(name==="admin"&&password==="dummy"){
-        //     setAuthentic(true)
-        //     setUsername(name)
-        //     return true 
-        // }
-        // else{
-        //     setAuthentic(false) 
-        //     return false
-        // }
+        console.log("tkn:"+baToken)
+        try{
+            const response= await BasicAuthentication(baToken)
+        
+            if(response.status==200){
+                setAuthentic(true)
+                setUsername(name)
+                return true 
+            }
+            else{
+                setAuthentic(false) 
+                return false
+            }
+        }catch(error){
+            console.log(error)
+        }
     }
 
     function islogout(){
