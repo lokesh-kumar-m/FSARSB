@@ -10,8 +10,3 @@ export const UserHello=(name)=>apiContext.get(`/hello-world/path-variable/${name
     }
 })
 
-export const BasicAuthentication=(token)=>apiContext.get(`/basicauth`,{
-    headers:{  
-        'Authorization':token
-    }
-})
